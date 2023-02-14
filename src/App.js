@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Container, Typography } from "@mui/material";
+import AccessibilityNewIcon from "@mui/icons-material/AccessibilityNew";
+import { Grid, Paper } from "@mui/material";
+import BasicList from "./components/BasicList";
+import LtTextArea from "./components/LtTextArea";
+import ResponsiveAppBar from "./components/ResponsiveAppBar";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <ResponsiveAppBar />
+      <Grid container spacing={2} paddingTop={4}>
+        <Grid item lg={7} sm={12}>
+          <LtTextArea />
+        </Grid>
+        <Grid item lg={5} sm={12}>
+          <Paper elevation={3}>
+            <BasicList />
+          </Paper>
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
 
