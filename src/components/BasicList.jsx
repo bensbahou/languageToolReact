@@ -23,7 +23,7 @@ function BasicList() {
     },
     matches: [
       {
-        message: "Did you mean “toooooo have”?",
+        message: "Did you mean “to have”?",
         shortMessage: "Possible typo",
         replacements: [
           {
