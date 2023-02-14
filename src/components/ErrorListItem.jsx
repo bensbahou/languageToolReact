@@ -13,7 +13,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Button } from "@mui/material";
 
 let match_example = {
-  message: "Did you mean “to have”?",
+  message: "Did you mean “to000000 have”?",
   shortMessage: "Possible typo",
   replacements: [
     {
