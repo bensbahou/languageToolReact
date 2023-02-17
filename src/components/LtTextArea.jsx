@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Card, Container, Paper, TextField } from "@mui/material";
 import { useState } from "react";
 const example_text = `LanguageTool is your intelligent writing assistant for all common browsers and word processors. 
@@ -7,6 +7,10 @@ Write or paste your text here too have it checked continuously. Errors will be u
 
 function LtTextArea() {
   const [value, setValue] = useState(example_text);
+  useEffect(() => {
+    console.log(value);
+  }, [value]);
+
   return (
     <div
       contentEditable
@@ -17,9 +21,8 @@ function LtTextArea() {
         padding: "10px",
         fontSize: "1.4rem",
       }}
-      onChange={(e) => {
-        setValue(e.target.innerHTML);
-        console.log(e.target.textcontent);
+      onInput={(e) => {
+        setValue(e.target.innerText);
       }}
     >
       {value}
