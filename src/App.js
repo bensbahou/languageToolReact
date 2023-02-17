@@ -499,15 +499,19 @@ function App() {
           </Grid>
         )}
         {!showErrors && (
-          <InitialOptions
-            setShowErrors={setShowErrors}
-            value={value}
-            setValue={setValue}
-            example_text={example_text}
-            setData={setData}
-            data={data}
-            add_errors={add_errors}
-          />
+          <Grid item lg={5} sm={12}>
+            <Paper elevation={3}>
+              <InitialOptions
+                setShowErrors={setShowErrors}
+                value={value}
+                setValue={setValue}
+                example_text={example_text}
+                setData={setData}
+                data={data}
+                add_errors={add_errors}
+              />
+            </Paper>
+          </Grid>
         )}
       </Grid>
     </Container>
