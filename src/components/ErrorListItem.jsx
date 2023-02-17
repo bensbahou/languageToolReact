@@ -1,5 +1,4 @@
 import React from "react";
-import Paper from "@mui/material/Paper";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
@@ -11,7 +10,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Button } from "@mui/material";
-
+/*
 let match_example = {
   message: "Did you mean “to have”?",
   shortMessage: "Possible typo",
@@ -44,7 +43,7 @@ let match_example = {
   ignoreForIncompleteSentence: true,
   contextForSureMatch: 5,
 };
-
+*/
 function ErrorListItem({
   match,
   index,
@@ -55,7 +54,8 @@ function ErrorListItem({
   setValue,
 }) {
   let color = "primary";
-  let error = value.slice(match.offset + 2, match.offset + match.length + 2);
+  let error = match.error;
+  const [show, setShow] = React.useState(true);
 
   switch (match.shortMessage) {
     case "Possible typo":
@@ -76,51 +76,57 @@ function ErrorListItem({
   }
 
   return (
-    <Accordion
-      sx={{ width: "100%", margin: 0.5 }}
-      expanded={expanded === "panel" + index}
-      onChange={handleChange("panel" + index)}
-    >
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
-        aria-controls={"panel" + index + "bh-content"}
-        id={"panel" + index + "bh-header"}
+    show && (
+      <Accordion
+        sx={{ width: "100%", margin: 0.5 }}
+        expanded={expanded === "panel" + index}
+        onChange={handleChange("panel" + index)}
       >
-        <ListItemButton>
-          <ListItemIcon>
-            <FiberManualRecordIcon sx={{ color: color }} />
-          </ListItemIcon>
-          <ListItemText
-            primary={
-              match.replacements[0].value +
-              " - " +
-              (match.shortMessage || "Style suggestion")
-            }
-          />
-        </ListItemButton>
-      </AccordionSummary>
-      <AccordionDetails>
-        <Typography>{match.message}</Typography>
-        {match.replacements.map((correctvalue, index) => {
-          return (
-            <Button
-              key={index}
-              sx={{ margin: 1 }}
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                console.log("|" + correctvalue.value + "|", "|" + error + "|");
-                let corrected_text = value.replace(error, correctvalue.value);
-                console.log(corrected_text.length, value.length);
-                setValue(corrected_text);
-              }}
-            >
-              {correctvalue.value} + {error}
-            </Button>
-          );
-        })}
-      </AccordionDetails>
-    </Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls={"panel" + index + "bh-content"}
+          id={"panel" + index + "bh-header"}
+        >
+          <ListItemButton>
+            <ListItemIcon>
+              <FiberManualRecordIcon sx={{ color: color }} />
+            </ListItemIcon>
+            <ListItemText
+              primary={
+                match.replacements[0].value +
+                " - " +
+                (match.shortMessage || "Style suggestion")
+              }
+            />
+          </ListItemButton>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>{match.message}</Typography>
+          {match.replacements.map((correctvalue, index) => {
+            return (
+              <Button
+                key={index}
+                sx={{ margin: 1 }}
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  setShow(false);
+                  console.log(
+                    "|" + correctvalue.value + "|",
+                    "|" + error + "|"
+                  );
+                  let corrected_text = value.replace(error, correctvalue.value);
+                  console.log(corrected_text.length, value.length);
+                  setValue(corrected_text);
+                }}
+              >
+                {correctvalue.value} + {error}
+              </Button>
+            );
+          })}
+        </AccordionDetails>
+      </Accordion>
+    )
   );
 }
 

@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import { Box, Card, Container, Paper, TextField } from "@mui/material";
-import { useState } from "react";
 
 function LtTextArea({ value, setValue }) {
   useEffect(() => {
