@@ -13,7 +13,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Button } from "@mui/material";
 
 let match_example = {
-  message: "Did you mean “to000000 have”?",
+  message: "Did you mean “to have”?",
   shortMessage: "Possible typo",
   replacements: [
     {
@@ -45,8 +45,18 @@ let match_example = {
   contextForSureMatch: 5,
 };
 
-function ErrorListItem({ match, index, expanded, handleChange }) {
+function ErrorListItem({
+  match,
+  index,
+  expanded,
+  handleChange,
+
+  value,
+  setValue,
+}) {
   let color = "primary";
+  let error = value.slice(match.offset + 2, match.offset + match.length + 2);
+
   switch (match.shortMessage) {
     case "Possible typo":
     case "Punctuation error":
@@ -91,15 +101,21 @@ function ErrorListItem({ match, index, expanded, handleChange }) {
       </AccordionSummary>
       <AccordionDetails>
         <Typography>{match.message}</Typography>
-        {match.replacements.map((value, index) => {
+        {match.replacements.map((correctvalue, index) => {
           return (
             <Button
               key={index}
               sx={{ margin: 1 }}
               variant="contained"
               color="primary"
+              onClick={() => {
+                console.log("|" + correctvalue.value + "|", "|" + error + "|");
+                let corrected_text = value.replace(error, correctvalue.value);
+                console.log(corrected_text.length, value.length);
+                setValue(corrected_text);
+              }}
             >
-              {value.value}
+              {correctvalue.value} + {error}
             </Button>
           );
         })}

@@ -4,7 +4,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ErrorListItem from "./ErrorListItem";
 
-function BasicList() {
+function BasicList({ value, setValue }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -23,7 +23,7 @@ function BasicList() {
     },
     matches: [
       {
-        message: "Did you mean “toooooo have”?",
+        message: "Did you mean “to have”?",
         shortMessage: "Possible typo",
         replacements: [
           {
@@ -497,6 +497,8 @@ function BasicList() {
                 index={index}
                 expanded={expanded}
                 handleChange={handleChange}
+                value={value}
+                setValue={setValue}
               />
             </ListItem>
           ))}
