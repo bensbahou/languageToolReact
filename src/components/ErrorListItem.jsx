@@ -10,46 +10,12 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Button } from "@mui/material";
-/*
-let match_example = {
-  message: "Did you mean “to have”?",
-  shortMessage: "Possible typo",
-  replacements: [
-    {
-      value: "to have",
-    },
-  ],
-  offset: 126,
-  length: 8,
-  type: {
-    typeName: "Other",
-  },
-  rule: {
-    id: "TOO_TO",
-    subId: "1",
-    description: "too go (to go)",
-    issueType: "misspelling",
-    urls: [
-      {
-        value: "https://languagetool.org/insights/post/word-choice-to-too-two/",
-      },
-    ],
-    category: {
-      id: "CONFUSED_WORDS",
-      name: "Commonly Confused Words",
-    },
-    isPremium: false,
-  },
-  ignoreForIncompleteSentence: true,
-  contextForSureMatch: 5,
-};
-*/
+
 function ErrorListItem({
   match,
   index,
   expanded,
   handleChange,
-
   value,
   setValue,
 }) {

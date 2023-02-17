@@ -15,7 +15,8 @@ function BasicList({ value, setValue, data }) {
     <Box
       sx={{
         bgcolor: "background.paper",
-        maxHeight: 370,
+        maxHeight: 360,
+        minHeight: 360,
         overflow: "auto",
         scrollBehavior: "smooth",
         "&::-webkit-scrollbar": {

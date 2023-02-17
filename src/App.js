@@ -1,12 +1,13 @@
 import React from "react";
 import { Container } from "@mui/material";
-import { Grid, Paper } from "@mui/material";
+import { Grid, Paper, Button } from "@mui/material";
 import BasicList from "./components/BasicList";
 import LtTextArea from "./components/LtTextArea";
 import ResponsiveAppBar from "./components/ResponsiveAppBar";
+import InitialOptions from "./components/InitialOptions";
 
-const example_text = `LanguageTool is your intelligent writing assistant for all common browsers and word processors. Write or paste your text here too have it checked continuously. Errors will be underlined in different colours: we will mark seplling errors with red underilnes. Furthermore grammar error's are highlighted in yellow. LanguageTool also marks style issues in a reliable manner by underlining them in blue. did you know that you can sea synonyms by double clicking a word? Its a impressively versatile tool especially if youd like to tell a colleague from over sea's about what happened at 5 PM in the afternoon on Monday, 27 May 2007.`;
-const data = {
+const example_text = `LanguageTool is your intelligent writing assistant for all common browsers and word processors. Write or paste your text here too have it checked continuously. Errors will be underlined in different colours: we will mark seplling errors with red underilnes. Furthermore grammar error's are highlighted in yellow. LanguageTool`;
+let data_example = {
   language: {
     name: "English (GB)",
     code: "en-GB",
@@ -468,13 +469,21 @@ const data = {
     [466, 628],
   ],
 };
-data.matches = data.matches.map((match) => {
-  match.error = example_text.slice(match.offset, match.offset + match.length);
-  return match;
-});
+
+const add_errors = (data, text) => {
+  data.matches = data.matches.map((match) => {
+    match.error = text.slice(match.offset, match.offset + match.length);
+    return match;
+  });
+  data.text = text;
+  return data;
+};
+data_example = add_errors(data_example, example_text);
 
 function App() {
-  const [value, setValue] = React.useState(example_text);
+  const [value, setValue] = React.useState("");
+  const [showErrors, setShowErrors] = React.useState(false);
+  const [data, setData] = React.useState(data_example);
   return (
     <Container>
       <ResponsiveAppBar />
@@ -482,11 +491,24 @@ function App() {
         <Grid item lg={7} sm={12}>
           <LtTextArea value={value} setValue={setValue} />
         </Grid>
-        <Grid item lg={5} sm={12}>
-          <Paper elevation={3}>
-            <BasicList value={value} setValue={setValue} data={data} />
-          </Paper>
-        </Grid>
+        {showErrors && (
+          <Grid item lg={5} sm={12}>
+            <Paper elevation={3}>
+              <BasicList value={value} setValue={setValue} data={data} />
+            </Paper>
+          </Grid>
+        )}
+        {!showErrors && (
+          <InitialOptions
+            setShowErrors={setShowErrors}
+            value={value}
+            setValue={setValue}
+            example_text={example_text}
+            setData={setData}
+            data={data}
+            add_errors={add_errors}
+          />
+        )}
       </Grid>
     </Container>
   );

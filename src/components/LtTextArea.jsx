@@ -11,6 +11,7 @@ function LtTextArea({ value, setValue }) {
       style={{
         height: "100%",
         maxHeight: "340px",
+        minHeight: "340px",
         border: "1px solid #ccc",
         padding: "10px",
         fontSize: "1.4rem",
