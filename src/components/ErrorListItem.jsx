@@ -77,16 +77,13 @@ function ErrorListItem({
                 color="primary"
                 onClick={() => {
                   setShow(false);
-                  console.log(
-                    "|" + correctvalue.value + "|",
-                    "|" + error + "|"
-                  );
+
                   let corrected_text = value.replace(error, correctvalue.value);
                   console.log(corrected_text.length, value.length);
                   setValue(corrected_text);
                 }}
               >
-                {correctvalue.value} + {error}
+                {correctvalue.value}
               </Button>
             );
           })}
