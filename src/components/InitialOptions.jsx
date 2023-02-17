@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Paper, Button } from "@mui/material";
+import { Box, List, ListItem, Button } from "@mui/material";
 
 function InitialOptions({
   setShowErrors,
@@ -29,32 +29,50 @@ function InitialOptions({
       .catch((err) => console.log("Error : ", err));
   };
   return (
-    <Grid>
-      <Paper elevation={3}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            console.log("Value : ", value);
+    <Box
+      sx={{
+        bgcolor: "background.paper",
+        maxHeight: 360,
+        minHeight: 360,
+        overflow: "auto",
+        scrollBehavior: "smooth",
+        "&::-webkit-scrollbar": {
+          display: "none",
+        },
+      }}
+      className="error-list"
+    >
+      <nav aria-label="main mailbox folders">
+        <List>
+          <ListItem>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                console.log("Value : ", value);
 
-            fetchErrors(value);
-          }}
-        >
-          Correct Text
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            console.log("Value : ", value);
+                fetchErrors(value);
+              }}
+            >
+              Correct Text
+            </Button>
+          </ListItem>
+          <ListItem>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                console.log("Value : ", value);
 
-            setValue(example_text);
-          }}
-        >
-          Example Text
-        </Button>
-      </Paper>
-    </Grid>
+                setValue(example_text);
+              }}
+            >
+              Example Text
+            </Button>
+          </ListItem>
+        </List>
+      </nav>
+    </Box>
   );
 }
 
