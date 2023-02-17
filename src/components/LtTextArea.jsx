@@ -15,7 +15,6 @@ function LtTextArea() {
         maxHeight: "340px",
         border: "1px solid #ccc",
         padding: "10px",
-        overflow: "auto",
         fontSize: "1.4rem",
       }}
       onChange={(e) => {
