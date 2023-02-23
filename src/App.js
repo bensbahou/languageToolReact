@@ -486,6 +486,7 @@ function App() {
   const [data, setData] = React.useState(data_example);
   return (
     <Container>
+      <div>Redux Version</div>
       <ResponsiveAppBar />
       <Grid container spacing={2} paddingTop={4}>
         <Grid item lg={7} sm={12}>
