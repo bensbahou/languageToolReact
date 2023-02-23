@@ -26,7 +26,7 @@ function BasicList({ value, setValue, data }) {
       className="error-list"
     >
       <nav aria-label="main mailbox folders">
-        {/* create a list of errors with max shown errors 5 */}
+        {/* create a list of errors with max shown errors 5  redux branch */}
         <List>
           {matches.slice(0, 10).map((match, index) => (
             <ListItem disablePadding key={index}>
